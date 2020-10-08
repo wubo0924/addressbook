@@ -1,5 +1,5 @@
 # Address Book
-##Requirements
+## Requirements
 You have been asked to develop an address book that allows a user to store (between
 successive runs of the program) the name and phone numbers of their friends, with the
 following functionality:
@@ -13,14 +13,14 @@ Book2 = { “Mary”, “John”, “Jane” }
 The friends that are unique to each address book are:
 Book1 \ Book2 = { “Bob”, “John” }
 
-##Design Decisions
+## Design Decisions
 Use microservice style to implement the requirements. It's easy to build, run and test. 
 3 Apis are open to list, create and be unique the users.   
 
-##Assumptions
+## Assumptions
 - A user's addressbook can be empty
 
-##API specification
+## API specification
 1. List users<br/>
     GET - http://localhost:8080/address-book/users
 2. Create users<br/>
@@ -28,16 +28,16 @@ Use microservice style to implement the requirements. It's easy to build, run an
 3. List unique users between two address books<br/>
     POST - http://localhost:8080/address-book/users/unique
 
-##Build
+## Build
 Locate in project directory
 ```
 mvn clean package
 ```
 
-##Run
+## Run
 Locate in project directory
 ```
 java -jar ./target/addressbook-1.0.0.jar 
 ```
 
-##Test
+## Test
