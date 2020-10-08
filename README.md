@@ -15,13 +15,13 @@ Book1 \ Book2 = { “Bob”, “John” }
 
 ## Design Decisions
 Use microservice style to implement the requirements. It's easy to build, run and test. 
-3 Apis are open to list, create and be unique the users.
+4 Apis are open to list, create and be unique the users, and also clear all users. 
 H2 is used for data storage. It's easy to set up and truncate. There are 3 initial users that pre-loaded in H2 once service started. The user data file is located in resources/data.sql.
 3 columns are designed in H2: id, name, phone. id column is only used for primary key, it won't appear in response. It's also not required while creating users. 
 
 ## Assumptions
 - A user's addressbook can be empty
-- A user CAN have two friends with the same name
+- A user CAN have two friends with the same name. It makes sense that two different friends have same name.
 
 ## API specification
 1. List users<br/>
@@ -32,6 +32,11 @@ H2 is used for data storage. It's easy to set up and truncate. There are 3 initi
     POST - http://localhost:8080/address-book/users/unique
 4. Clear users for data storage<br/>
     DELETE - http://localhost:8080/address-book/users/clear
+
+## Execution Environment
+1. Maven must be installed. Maven is used to build and package all dependencies. 
+2. JVM 8 must be installed. Java 8 is used to compile the source code. The higher version is also working ok. 
+3. The service will run on JVM as independent jar. 
 
 ## Build
 Locate in project directory
@@ -98,7 +103,7 @@ curl --location --request POST 'http://localhost:8080/address-book/users/unique'
     ]
 }'
 ```
-## Clear data
+• Clear all users
 ```
 curl --location --request DELETE 'http://localhost:8080/address-book/users/clear'
 ```
