@@ -22,6 +22,7 @@ H2 is used for data storage. It's easy to set up and truncate. There are 3 initi
 ## Assumptions
 - A user's addressbook can be empty
 - A user CAN have two friends with the same name. It makes sense that two different friends have same name.
+- No authentication and authorization are required. 
 
 ## API specification
 1. List users<br/>
