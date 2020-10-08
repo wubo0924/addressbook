@@ -25,31 +25,53 @@ public class AddressBookController implements AddressBookApi{
 
     @Override
     public ResponseEntity<ResponseListUsers> listUsers() {
-        List<AddressBook> addressBookList = addressBookService.listAddressBook();
-        ResponseListUsers responseListUsers = new ResponseListUsers();
-        responseListUsers.setAddressBookList(addressBookList);
-        return ResponseEntity.ok().body(responseListUsers);
+        try{
+            List<AddressBook> addressBookList = addressBookService.listAddressBook();
+            ResponseListUsers responseListUsers = new ResponseListUsers();
+            responseListUsers.setAddressBookList(addressBookList);
+            return ResponseEntity.ok().body(responseListUsers);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
 
     @Override
     public ResponseEntity<ResponseListUsers> createUsers(RequestCreateUsers requestCreateUsers) {
-        List<AddressBook> addressBookList = addressBookService.createAddressBook(requestCreateUsers);
-        ResponseListUsers responseListUsers = new ResponseListUsers();
-        responseListUsers.setAddressBookList(addressBookList);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseListUsers);
+        try{
+            List<AddressBook> addressBookList = addressBookService.createAddressBook(requestCreateUsers);
+            ResponseListUsers responseListUsers = new ResponseListUsers();
+            responseListUsers.setAddressBookList(addressBookList);
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseListUsers);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
     @Override
     public ResponseEntity<ResponseListUsers> listUniqueUsers(RequestListUniqueUsers requestListUniqueUsers) {
-        List<AddressBook> addressBookList = addressBookService.listUniqueAddressBook(requestListUniqueUsers);
-        ResponseListUsers responseListUsers = new ResponseListUsers();
-        responseListUsers.setAddressBookList(addressBookList);
-        return ResponseEntity.ok().body(responseListUsers);
+        try {
+            List<AddressBook> addressBookList = addressBookService.listUniqueAddressBook(requestListUniqueUsers);
+            ResponseListUsers responseListUsers = new ResponseListUsers();
+            responseListUsers.setAddressBookList(addressBookList);
+            return ResponseEntity.ok().body(responseListUsers);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
-//    @RequestMapping(value = "/test", method = RequestMethod.GET)
-//    public String test(){
-//        return "Test";
-//    }
+    @Override
+    public ResponseEntity clearUsers() {
+        try{
+            addressBookService.clearUsers();
+            return ResponseEntity.noContent().build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
 }

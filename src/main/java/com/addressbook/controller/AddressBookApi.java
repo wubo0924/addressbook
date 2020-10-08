@@ -22,4 +22,7 @@ public interface AddressBookApi {
 
     @PostMapping(value = "/users/unique", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ResponseListUsers> listUniqueUsers(@RequestBody RequestListUniqueUsers requestListUniqueUsers);
+
+    @DeleteMapping(value= "/users/clear")
+    ResponseEntity clearUsers();
 }
